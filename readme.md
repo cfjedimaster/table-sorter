@@ -47,4 +47,8 @@ Note that `numeric="4"` here means to sort the fourth column, "Age", numerically
 
 ## Installation
 
-Via npm (in a bit) or download [table-sorter.js](./table-sorter.js) directly.
+Via [npm](https://www.npmjs.com/package/@raymondcamden/table-sorter) or download [table-sorter.js](./table-sorter.js) directly.
+
+```
+npm i @raymondcamden/table-sorter
+```
