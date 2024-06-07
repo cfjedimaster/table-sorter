@@ -2,7 +2,7 @@
 
 A simple web component that adds sorting to a table. Given a simple table, wrap the contents with `<table-sort>`, load the component via a script tag, and the table will become sortable.
 
-Check out the [demo](./demo.html).
+Check out the [demo](https://cfjedimaster.github.io/table-sorter/demo.html).
 
 ## Usage
 
