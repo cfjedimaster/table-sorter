@@ -1,6 +1,6 @@
 {
   "name": "@raymondcamden/table-sorter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "table-sorter.js",
   "scripts": {
