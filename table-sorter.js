@@ -63,7 +63,6 @@ class TableSort extends HTMLElement {
 			let valueB = cellB.innerText;
 			if(cellB.dataset.sortval) valueB = cellB.dataset.sortval;
 			if(this.numericColumns.indexOf(i) >= 0) valueB = parseInt(valueB,10);
-			console.log(valueA,valueB, valueA[i] < valueB[i]);
 			if(valueA < valueB) return -1 * sortToggle;
 			if(valueA > valueB) return 1 * sortToggle;
 
