@@ -10,6 +10,8 @@ Your table must contain a `<thead>` and `<tbody>` tag pair.
 
 There's only one optional argument, `numeric`, which represents the table columns that should be treated as numbers when sorted. Can be a comma-delimited list and column numbers begin with 1 because that just makes sense. 
 
+If your table cells make use of `data-sortval`, that value will be used instead of the contents of the cell. This lets you do things like having a numeric date value and a formatted string displayed. `demo2.html` shows an example of this. 
+
 ## Example 
 
 Note that `numeric="4"` here means to sort the fourth column, "Age", numerically.
@@ -52,3 +54,9 @@ Via [npm](https://www.npmjs.com/package/@raymondcamden/table-sorter) or download
 ```
 npm i @raymondcamden/table-sorter
 ```
+
+## History
+
+| Date | Change |
+| --- | --- |
+| June 25, 2025 | Added `data-sortval` support and used DOM swapping instead of blowing away the table. |

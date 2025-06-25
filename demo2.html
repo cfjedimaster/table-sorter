@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+	table {
+		border-collapse: collapse;
+		border: 1px solid black;
+		width: 100%;
+		max-width: 500px;
+	}
+
+	th, td {
+		border: 1px solid black;
+		padding: 5px;	
+	}
+	</style>
+</head>
+<body>
+
+<table-sort>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Breed</th>
+			<th>Gender</th>
+			<th>Birthday</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Luna</td>
+			<td>Domestic Shorthair</td>
+			<td>Female</td>
+			<td data-sortval="300">April 8, 1973</td>
+		</tr>
+		<tr>
+			<td>Elise</td>
+			<td>Domestic Longhair</td>
+			<td>Female</td>
+			<td data-sortval="400">May 3, 1990</td>
+		</tr>
+		<tr>
+			<td>Pig</td>
+			<td>Domestic Shorthair</td>
+			<td>Female</td>
+			<td data-sortval="500">June 12, 1991</td>
+		</tr>
+		<tr>
+			<td>Crackers</td>
+			<td>Maine Coon</td>
+			<td>Male</td>
+			<td data-sortval="200">January 1, 1952</td>
+		</tr>
+		<tr>
+			<td>Zuma</td>
+			<td>Ragdoll</td>
+			<!-- using an onmouseover to ensure it is preserved -->
+			<td onmouseover="console.log('hello world')">Male</td>
+			<td data-sortval="100">December 25, 1951</td>
+		</tr>
+	</tbody>
+
+</table>
+</table-sort>
+
+<script type="module" src="table-sorter.js"></script>
+</body>
+</html>

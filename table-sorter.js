@@ -1,9 +1,11 @@
 class TableSort extends HTMLElement {
 	constructor() {
 		super();
-		this.data = [];
 		this.lastSort = null;
 		this.sortAsc = true;
+
+		this.rows = null;
+		this.numericColumns = [];
 	}
 	
 	connectedCallback() {
@@ -15,9 +17,8 @@ class TableSort extends HTMLElement {
 			return;
 		}
 		
-		let numericColumns = [];
 		if(this.hasAttribute('numeric')) {
-			numericColumns = this.getAttribute('numeric').split(',').map(x => parseInt(x-1,10));
+			this.numericColumns = this.getAttribute('numeric').split(',').map(x => parseInt(x-1,10));
 		}
 		
 		// require tbody and thead
@@ -28,16 +29,7 @@ class TableSort extends HTMLElement {
 			return;			
 		}
 		
-		let rows = tbody.querySelectorAll('tr');
-		rows.forEach(r => {
-			let datum = [];
-			let row = r.querySelectorAll('td');
-			row.forEach((r,i) => {
-				if(numericColumns.indexOf(i) >= 0) datum[i] = parseInt(r.innerText,10);
-				else datum[i] = r.innerText;
-			});
-			this.data.push(datum);
-		});
+		this.rows = Array.from(tbody.querySelectorAll('tr'));
 		
 		// Get our headers
 		let headers = thead.querySelectorAll('th');
@@ -53,35 +45,33 @@ class TableSort extends HTMLElement {
 
 	}
 	
-	renderTable() {
-		let newHTML = '';
-		for(let i=0;i<this.data.length;i++) {
-			let row = '<tr>';
-			for(let c in this.data[i]) {
-				row += `<td>${this.data[i][c]}</td>`;
-			}
-			row += '</tr>';
-			newHTML += row;
-		}
-		this.tbody.innerHTML = newHTML;
-	}
-	
 	sortCol(e,i) {
 		let sortToggle = 1;
 		if(this.lastSort === i) {
 			this.sortAsc = !this.sortAsc;
 			if(!this.sortAsc) sortToggle = -1;
 		} else this.sortAsc = true;
-		
 		this.lastSort = i;
 		
-		this.data.sort((a,b) => {
-			if(a[i] < b[i]) return -1 * sortToggle;
-			if(a[i] > b[i]) return 1 * sortToggle;
+		this.rows.sort((a, b) => {
+			let cellA = a.querySelectorAll('td')[i];
+			let valueA = cellA.innerText;
+			if(cellA.dataset.sortval) valueA = cellA.dataset.sortval;
+			if(this.numericColumns.indexOf(i) >= 0) valueA = parseInt(valueA,10);
+			
+			let cellB = b.querySelectorAll('td')[i];
+			let valueB = cellB.innerText;
+			if(cellB.dataset.sortval) valueB = cellB.dataset.sortval;
+			if(this.numericColumns.indexOf(i) >= 0) valueB = parseInt(valueB,10);
+			console.log(valueA,valueB, valueA[i] < valueB[i]);
+			if(valueA < valueB) return -1 * sortToggle;
+			if(valueA > valueB) return 1 * sortToggle;
+
 			return 0;
 		});
-		
-		this.renderTable();
+
+		this.rows.forEach(r => this.tbody.appendChild(r));
+	
 	}
 }
 
